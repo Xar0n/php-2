@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 
+use App\DB;
 use App\Model;
 
 class Article extends Model
@@ -9,4 +10,11 @@ class Article extends Model
 	public $id;
 	public $title;
 	public $lead;
+
+	public static function threeLastArticle()
+	{
+		$db = new DB();
+		$sql = 'SELECT * FROM ' . self::$table . ' ORDER BY `id` DESC LIMIT 3';
+		return $db->query($sql, [], self::class);
+	}
 }

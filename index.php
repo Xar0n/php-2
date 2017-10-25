@@ -1,4 +1,7 @@
 <?php
-require __DIR__.'/autoload.php';
+require __DIR__ . '/autoload.php';
+
 use App\Models\Article;
-var_dump(Article::findAll());
+
+$articles = Article::threeLastArticle();
+include __DIR__ . '/App/Views/article.php';
