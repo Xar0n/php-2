@@ -1,5 +1,5 @@
 <?php
 require __DIR__ . '/../autoload.php';
-
-$config = new \App\Config;
+use App\Config;
+$config = Config::getInstance();
 echo $config->data['db']['host'];
