@@ -18,9 +18,9 @@
 	</tr>
 	<?php foreach ($articles as $article): ?>
 		<tr>
-			<td><a href="view.php?id=<?= $article->id?>"><?= $article->id;?></a></td>
-            <td><?= $article->title?></td>
-            <td><a href="edit.php?id=<?= $article->id?>">Редактировать</a></td>
+			<td><a href="view.php?id=<?php echo $article->id?>"><?php echo $article->id;?></a></td>
+            <td><?php echo $article->title?></td>
+            <td><a href="edit.php?id=<?php echo $article->id?>">Редактировать</a></td>
 			<form method="post">
 				<td>
                     <input type="hidden" name="id_article" value="<?php echo $article->id;?>">

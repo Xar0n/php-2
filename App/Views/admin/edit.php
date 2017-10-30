@@ -9,10 +9,10 @@
 </head>
 <body>
 <b><a href="index.php">Редактор</a></b><br>
-<b>Редактирование новости номер:<?= $article->id?><b>
+<b>Редактирование новости номер:<?php echo $article->id?><b>
 <form method="post" name="edit">
-    <input type="text" name="title" style="width: 600px" value="<?= $article->title?>"><br>
-    <textarea name="lead" style="width: 600px;height: 200px"><?= htmlspecialchars($article->lead);?></textarea><br>
+    <input type="text" name="title" style="width: 600px" value="<?php echo $article->title?>"><br>
+    <textarea name="lead" style="width: 600px;height: 200px"><?php echo htmlspecialchars($article->lead);?></textarea><br>
     <input type="submit" name="save" value="Сохранить">
 </form>
 </body>

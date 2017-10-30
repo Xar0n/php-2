@@ -11,7 +11,8 @@ class DB
 		$this->dbh = new \PDO('mysql:host=localhost;dbname=php2', 'root', '');
 	}
 
-	public function getDbh(){
+	public function getDbh()
+	{
 		return $this->dbh;
 	}
 
