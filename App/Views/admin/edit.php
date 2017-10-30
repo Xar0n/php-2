@@ -8,12 +8,11 @@
 	<title>Редактирование новости</title>
 </head>
 <body>
-<b><a href="index.php">Главная</a></b>
-<b><a href="editor.php">Редактор</a></b><br>
+<b><a href="index.php">Редактор</a></b><br>
 <b>Редактирование новости номер:<?= $article->id?><b>
 <form method="post" name="edit">
     <input type="text" name="title" style="width: 600px" value="<?= $article->title?>"><br>
-    <textarea name="content" style="width: 600px;height: 200px"><?= htmlspecialchars($article->lead);?></textarea><br>
+    <textarea name="lead" style="width: 600px;height: 200px"><?= htmlspecialchars($article->lead);?></textarea><br>
     <input type="submit" name="save" value="Сохранить">
 </form>
 </body>

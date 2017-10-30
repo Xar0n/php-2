@@ -8,8 +8,7 @@
     <title>Добавление новости</title>
 </head>
 <body>
-<b><a href="index.php">Главная</a></b>
-<b><a href="editor.php">Редактор</a></b><br>
+<b><a href="index.php">Редактор</a></b><br>
 <h2>Новая статья</h2>
 <form method="post">
     Название: <br>

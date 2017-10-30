@@ -12,10 +12,10 @@ use App\Models\Article;
 
 $article = Article::findById($_GET['id']);
 
-if(isset($_POST) && isset($_POST['save']) && isset($_POST['title']) && isset($_POST['content'])) {
+if(isset($_POST) && isset($_POST['save']) && isset($_POST['title']) && isset($_POST['lead'])) {
 	$article = Article::findById($article->id);
 	$article->title = $_POST['title'];
-	$article->lead = $_POST['content'];
+	$article->lead = $_POST['lead'];
 	$article->save();
 }
 
