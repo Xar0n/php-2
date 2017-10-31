@@ -22,7 +22,7 @@ abstract class Model
 		return $result ? $result[0] : false;
 	}
 
-	public function update()
+	protected function update()
 	{
 		$fields = get_object_vars($this);
 		$sets = [];
@@ -43,11 +43,10 @@ abstract class Model
 		$db->execute($sql, $data);
 	}
 
-	public function insert()
+	protected function insert()
 	{
 		$fields = get_object_vars($this);
 		$sets_fields = [];
-		$sets_values = [];
 		$data = [];
 		foreach ($fields as $name => $value) {
 			if ('id' == $name) {
@@ -58,13 +57,10 @@ abstract class Model
 			}
 			$data[':' . $name] = $value;
 			$sets_fields[] = $name;
-			$sets_values[] = ':' . $name;
 		}
 
 		$sql = '
-		INSERT ' . static::$table . '
-		(id, ' . implode(', ', $sets_fields) . ') 
-		VALUES(NULL, ' . implode(', ', $sets_values) . ')';
+		INSERT ' . static::$table . '(id, ' . implode(', ', $sets_fields) . ') VALUES(NULL, ' . implode(', ', array_keys($data)) . ')';
 		$db = new DB();
 		$db->execute($sql, $data);
 		$this->id = $db->getDbh()->lastInsertId();
