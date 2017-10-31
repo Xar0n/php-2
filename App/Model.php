@@ -60,7 +60,9 @@ abstract class Model
 		}
 
 		$sql = '
-		INSERT ' . static::$table . '(id, ' . implode(', ', $sets_fields) . ') VALUES(NULL, ' . implode(', ', array_keys($data)) . ')';
+			INSERT ' . static::$table .
+			'(id, ' . implode(', ', $sets_fields) . ') 
+			VALUES(NULL, ' . implode(', ', array_keys($data)) . ')';
 		$db = new DB();
 		$db->execute($sql, $data);
 		$this->id = $db->getDbh()->lastInsertId();
