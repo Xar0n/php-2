@@ -14,8 +14,8 @@ $article = Article::findById($_GET['id']);
 
 if(isset($_POST) && isset($_POST['save']) && isset($_POST['title']) && isset($_POST['lead'])) {
 	$article = Article::findById($article->id);
-	$article->title = $_POST['title'];
-	$article->lead = $_POST['lead'];
+	$article->title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);;
+	$article->lead = filter_input(INPUT_POST, 'lead', FILTER_SANITIZE_STRING);;
 	$article->save();
 }
 
