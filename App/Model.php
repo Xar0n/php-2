@@ -70,7 +70,7 @@ abstract class Model
 	public function save()
 	{
 		$fields = get_object_vars($this);
-		if(is_null($fields['id'])) {
+		if(empty($fields['id'])) {
 			$this->insert();
 		} else {
 			$this->update();
@@ -81,7 +81,7 @@ abstract class Model
 	public  function delete()
 	{
 		$fields = get_object_vars($this);
-		if(is_null($fields['id'])) {
+		if(empty($fields['id'])) {
 			return false;
 		}
 		$db = new DB();
