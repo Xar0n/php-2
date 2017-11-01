@@ -52,13 +52,12 @@ abstract class Model
 			if ('id' == $name) {
 				continue;
 			}
-			if (is_null($value)) {
-				$value = 'NULL';
+			if (empty($value)) {
+				$value = null;
 			}
 			$data[':' . $name] = $value;
 			$sets_fields[] = $name;
 		}
-
 		$sql = '
 			INSERT ' . static::$table .
 			'(id, ' . implode(', ', $sets_fields) . ') 
