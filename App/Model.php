@@ -73,8 +73,10 @@ abstract class Model
 		$fields = get_object_vars($this);
 		if(is_null($fields['id'])) {
 			$this->insert();
+		} else {
+			$this->update();
 		}
-		$this->update();
+
 	}
 
 	public  function delete()
