@@ -10,12 +10,18 @@
 <body>
 <b><a href="index.php">Редактор</a></b><br>
 <h2>Новая статья</h2>
-<form method="post">
-    Название: <br>
+<form method="post"  action="add.php">
+    <label>Название:
     <input type="text" name="title" style="width: 600px">
+    </label>
     <br>
-    Содержание: <br>
+    <label>Автор:
+    <input type="text" name="author" style="width: 600px">
+    </label>
+    <br>
+    <label>Содержание:<br>
     <textarea name="lead" style="width: 600px;height: 400px"></textarea>
+    </label>
     <br>
     <input type="submit" name="add" value="Добавить">
 </form>

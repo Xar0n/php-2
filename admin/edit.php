@@ -1,22 +1,25 @@
 <?php
-if(isset($_GET['id'])) {
-	$id = (int)trim($_GET['id']);
-	if (!$id) {
-		die("Некорректный GET параметр id");
-	}
-} else die("Не передан GET параметр id");
+if(filter_has_var(INPUT_GET, 'id')) {
+	$id = filter_input(INPUT_GET, 'id' ,FILTER_VALIDATE_INT) or die('Некорректный параметр id');
+} else die('Не передан параметр id');
 
 require __DIR__ . '/../autoload.php';
 
-use App\Models\Article;
+use App\View;
+use App\Models\{Article, Author};
 
-$article = Article::findById($_GET['id']);
+$article = Article::findById($id) or die('Запись не найдена');
 
-if(isset($_POST) && isset($_POST['save']) && isset($_POST['title']) && isset($_POST['lead'])) {
-	$article = Article::findById($article->id);
-	$article->title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);;
-	$article->lead = filter_input(INPUT_POST, 'lead', FILTER_SANITIZE_STRING);;
+if(isset($_POST, $_POST['save'], $_POST['title'], $_POST['lead'], $_POST['author'])) {
+	$author = Author::findById($article->author_id);
+	$author->name = filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING);
+	$author->save();
+
+	$article->title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
+	$article->lead = filter_input(INPUT_POST, 'lead', FILTER_SANITIZE_STRING);
 	$article->save();
 }
 
-include __DIR__ . '/../App/Views/admin/edit.php';
+$view = new View;
+$view->article = $article;
+$view->display(__DIR__ . '/../App/Views/admin/edit.php');

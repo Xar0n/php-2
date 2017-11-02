@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 01 2017 г., 10:04
+-- Время создания: Ноя 02 2017 г., 15:04
 -- Версия сервера: 5.7.16
 -- Версия PHP: 7.1.0
 
@@ -33,31 +33,6 @@ CREATE TABLE `articles` (
   `author_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Дамп данных таблицы `articles`
---
-
-INSERT INTO `articles` (`id`, `title`, `lead`, `author_id`) VALUES
-(1, 'wdwdwdwdwd', 'dwdwdweeedwwdwdwfefeef', 2),
-(2, 'test', 'dwwddw', 1),
-(3, 'dwdwwddwwd', 'dwwdwd', 1),
-(5, 'Test title insert', 'Test lead insert', 2),
-(6, 'Test title insert', 'Test lead insert', 1),
-(7, 'wdwddw', 'wdwddw', 1),
-(8, 'wdwddwdwdwddw', 'dwdwwd', 2),
-(9, 'qdwd', 'dwdwd', 1),
-(10, 'dwdww', 'dwwddw', 1),
-(11, 'dwdww', 'dwwddw', 1),
-(12, 'dwdww', 'dwwddw', 1),
-(13, 'dwdww', 'dwwddw', 1),
-(14, 'test', 'test lead', 2),
-(15, 'test', 'test lead', 2),
-(16, NULL, NULL, NULL),
-(17, NULL, NULL, NULL),
-(18, NULL, NULL, NULL),
-(19, NULL, NULL, NULL),
-(20, NULL, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -66,16 +41,8 @@ INSERT INTO `articles` (`id`, `title`, `lead`, `author_id`) VALUES
 
 CREATE TABLE `authors` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(1024) NOT NULL
+  `name` varchar(1024) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `authors`
---
-
-INSERT INTO `authors` (`id`, `name`) VALUES
-(1, 'Samedy'),
-(2, 'Tony');
 
 --
 -- Индексы сохранённых таблиц
@@ -102,12 +69,12 @@ ALTER TABLE `authors`
 -- AUTO_INCREMENT для таблицы `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 --
 -- AUTO_INCREMENT для таблицы `authors`
 --
 ALTER TABLE `authors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

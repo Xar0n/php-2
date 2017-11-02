@@ -2,11 +2,19 @@
 
 namespace App;
 
+/**
+ * Class Model
+ * @package App
+ * @property $id
+ */
 abstract class Model
 {
 	public $id;
 	protected static $table = null;
 
+	/**
+	 * @return array
+	 */
 	public static function findAll()
 	{
 		$db = new DB();
@@ -14,6 +22,10 @@ abstract class Model
 		return $db->query($sql, [], static::class);
 	}
 
+	/**
+	 * @param int $id
+	 * @return object|bool
+	 */
 	public static function findById(int $id)
 	{
 		$db = new DB();
@@ -34,7 +46,6 @@ abstract class Model
 			}
 			$sets[] = $name . '=:' . $name;
 		}
-
 		$sql = '
 		UPDATE ' . static::$table . '
 		SET ' . implode(', ', $sets) . '

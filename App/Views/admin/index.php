@@ -14,16 +14,18 @@
 	<tr>
 		<th>Номер</th>
 		<th>Название</th>
+        <th>Автор</th>
 		<th colspan="2">Действия</th>
 	</tr>
 	<?php foreach ($articles as $article): ?>
 		<tr>
-			<td><a href="view.php?id=<?php echo $article->id?>"><?php echo $article->id;?></a></td>
-            <td><?php echo $article->title?></td>
+			<td><?php echo $article->id ?></a></td>
+            <td><?php echo htmlspecialchars($article->title) ?></td>
+            <td><?php echo htmlspecialchars($article->author->name) ?></td>
             <td><a href="edit.php?id=<?php echo $article->id?>">Редактировать</a></td>
 			<form method="post">
 				<td>
-                    <input type="hidden" name="id_article" value="<?php echo $article->id;?>">
+                    <input type="hidden" name="id_article" value="<?php echo $article->id ?>">
 					<input type="submit" name="delete" value="Удалить">
 				</td>
 			</form>
