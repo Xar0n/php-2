@@ -33,6 +33,6 @@ class View
 
 	public function __isset($name)
 	{
-		return isset($this->name);
+		return isset($this->$name);
 	}
 }
