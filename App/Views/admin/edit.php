@@ -9,7 +9,14 @@
 </head>
 <body>
 <b><a href="index.php">Редактор</a></b><br>
-<b>Редактирование новости номер:<?php echo $article->id?><b>
+<?php
+if(!empty($errors)) {
+    foreach ($errors as $error){
+        echo "<b>${error}</b><br>";
+    }
+}
+?>
+<h2>Редактирование новости номер:<?php echo $article->id?></h2>
 <form method="post">
     <label>Название:
     <input type="text" name="title" style="width: 600px" value="<?php echo $article->title?>">

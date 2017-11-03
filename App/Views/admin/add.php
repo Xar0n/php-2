@@ -9,6 +9,13 @@
 </head>
 <body>
 <b><a href="index.php">Редактор</a></b><br>
+<?php
+if(!empty($errors)) {
+	foreach ($errors as $error){
+		echo "<b>{$error}</b><br>";
+	}
+}
+?>
 <h2>Новая статья</h2>
 <form method="post"  action="add.php">
     <label>Название:
