@@ -3,9 +3,9 @@
 namespace App;
 
 class View
-	implements \Countable
+	implements \Countable, \Iterator
 {
-	use Magic;
+	use Magic, Iterator;
 
 	protected $data = [];
 
@@ -29,10 +29,5 @@ class View
 	public function count()
 	{
 		return count($this->data);
-	}
-
-	public function __isset($name)
-	{
-		return isset($this->$name);
 	}
 }
