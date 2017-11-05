@@ -9,11 +9,16 @@ namespace App;
  */
 abstract class Model
 {
+	/**
+	 * @var integer
+	 */
 	public $id;
 	protected static $table = null;
 
 	/**
 	 * @return array
+	 * @static
+	 * @access public
 	 */
 	public static function findAll()
 	{
@@ -34,6 +39,9 @@ abstract class Model
 		return $result ? $result[0] : false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	protected function update()
 	{
 		$fields = get_object_vars($this);
@@ -47,13 +55,16 @@ abstract class Model
 			$sets[] = $name . '=:' . $name;
 		}
 		$sql = '
-		UPDATE ' . static::$table . '
-		SET ' . implode(', ', $sets) . '
-		WHERE id=:id';
+			UPDATE ' . static::$table . '
+			SET ' . implode(', ', $sets) . '
+			WHERE id=:id';
 		$db = new DB();
-		$db->execute($sql, $data);
+		return $db->execute($sql, $data);
 	}
 
+	/**
+	 * @return bool
+	 */
 	protected function insert()
 	{
 		$fields = get_object_vars($this);
@@ -63,9 +74,6 @@ abstract class Model
 			if ('id' == $name) {
 				continue;
 			}
-			if (empty($value)) {
-				$value = null;
-			}
 			$data[':' . $name] = $value;
 			$sets_fields[] = $name;
 		}
@@ -74,8 +82,9 @@ abstract class Model
 			'(id, ' . implode(', ', $sets_fields) . ') 
 			VALUES(NULL, ' . implode(', ', array_keys($data)) . ')';
 		$db = new DB();
-		$db->execute($sql, $data);
-		$this->id = $db->getDbh()->lastInsertId();
+		$result = $db->execute($sql, $data);
+		if ($result) $this->id = $db->getDbh()->lastInsertId();
+		return $result;
 	}
 
 	public function save()
@@ -86,9 +95,11 @@ abstract class Model
 		} else {
 			$this->update();
 		}
-
 	}
 
+	/**
+	 * @return bool
+	 */
 	public  function delete()
 	{
 		$fields = get_object_vars($this);
@@ -97,6 +108,6 @@ abstract class Model
 		}
 		$db = new DB();
 		$sql = 'DELETE FROM ' . static::$table . ' WHERE id = :id';
-		$db->execute($sql, [':id' => $fields['id']]);
+		return $db->execute($sql, [':id' => $fields['id']]);
 	}
 }

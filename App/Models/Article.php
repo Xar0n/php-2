@@ -14,24 +14,29 @@ class Article extends Model
 	/**
 	 * @var string|null
 	 * @static
+	 * @access protected
 	 */
 	protected static $table = 'articles';
 	/**
-	 * @var string|null
+	 * @var string
+	 * @access public
 	 */
 	public $title;
 	/**
-	 * @var string|null
+	 * @var string
+	 * @access public
 	 */
 	public $lead;
 	/**
-	 * @var int|null
+	 * @var int
+	 * @access public
 	 */
 	public $author_id;
 
 	/**
 	 * @param $name
 	 * @return bool|object
+	 * @access public
 	 */
 	public function __get($name)
 	{
@@ -46,6 +51,7 @@ class Article extends Model
 	 * @param int $number
 	 * @return array
 	 * @static
+	 * @access public
 	 */
 	public static function selectLimitDesc(int $number)
 	{

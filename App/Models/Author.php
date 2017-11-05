@@ -13,10 +13,13 @@ class Author extends Model
 {
 	/**
 	 * @var string|null
+	 * @static
+	 * @access protected
 	 */
 	protected static $table = 'authors';
 	/**
-	 * @var string|null
+	 * @var string
+	 * @access public
 	 */
 	public $name;
 }

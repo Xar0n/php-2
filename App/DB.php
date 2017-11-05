@@ -8,7 +8,11 @@ class DB
 
 	public function __construct()
 	{
-		$this->dbh = new \PDO('mysql:host=localhost;dbname=php2', 'root', '');
+		$config = Config::getInstance();
+		$this->dbh = new \PDO('mysql:host=' . $config->data['db']['host'] .
+			';dbname=' . $config->data['db']['database'],
+			$config->data['db']['user'],
+			$config->data['db']['password']);
 	}
 
 	public function getDbh()

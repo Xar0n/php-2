@@ -4,14 +4,13 @@ namespace App;
 
 class Config
 {
-	public $data;
+	public $data = array();
 	private static $instance = null;
-	protected $config_file = 'config.json';
+	protected $config_file = 'config.php';
 
 	private function __construct()
 	{
-		$json_object = file_get_contents(__DIR__ . '/' . $this->config_file);
-		$this->data = json_decode($json_object, true);
+		$this->data = include __DIR__ . '/../' . $this->config_file;
 	}
 
 	private function __clone()
