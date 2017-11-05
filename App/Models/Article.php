@@ -40,10 +40,8 @@ class Article extends Model
 	 */
 	public function __get($name)
 	{
-		if ($name == 'author') {
-			if (!empty($this->author_id)) {
-			  	return $this->author = Author::findById($this->author_id);
-			}
+		if ($name == 'author' && !empty($this->author_id)) {
+			return $this->author = Author::findById($this->author_id);
 		}
 	}
 
