@@ -41,6 +41,7 @@ abstract class Model
 
 	/**
 	 * @return bool
+	 * @access protected
 	 */
 	protected function update()
 	{
@@ -64,6 +65,7 @@ abstract class Model
 
 	/**
 	 * @return bool
+	 * @access protected
 	 */
 	protected function insert()
 	{
@@ -87,6 +89,9 @@ abstract class Model
 		return $result;
 	}
 
+	/**
+	 * @access public
+	 */
 	public function save()
 	{
 		$fields = get_object_vars($this);
@@ -98,9 +103,10 @@ abstract class Model
 	}
 
 	/**
+	 * @access public
 	 * @return bool
 	 */
-	public  function delete()
+	public function delete()
 	{
 		$fields = get_object_vars($this);
 		if(empty($fields['id'])) {
