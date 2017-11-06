@@ -4,13 +4,18 @@ require __DIR__ . '/../autoload.php';
 use App\View;
 use App\Models\{Article, Author};
 
-if(isset($_POST, $_POST['delete'], $_POST['id_article'])) {
-	$id = filter_input(INPUT_POST, 'id_article', FILTER_VALIDATE_INT);
-		if ($id && $article = Article::findById($id)) {
-			$article->delete();
-			if ($author = Author::findById($article->author_id))
-				$author->delete();
-		}
+if (isset($_POST, $_POST['delete'], $_POST['id_article'])) {
+    $id = filter_input(INPUT_POST, 'id_article', FILTER_VALIDATE_INT);
+    if ($id) {
+        $article = Article::findById($id);
+        if (!empty($article)) {
+            $article->delete();
+            $author = Author::findById($article->author_id);
+            if (!empty($author)) {
+                $author->delete();
+            }
+        }
+    }
 }
 
 $articles = Article::findAll();
