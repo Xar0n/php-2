@@ -8,7 +8,10 @@ if(filter_has_var(INPUT_GET, 'id')) {
 require __DIR__ . '/../autoload.php';
 
 use App\View;
-use App\Models\{Article, Author};
+use App\Models\{
+	Article,
+	Author
+};
 
 $errors = array();
 $article = Article::findById($id) or die('Запись не найдена');

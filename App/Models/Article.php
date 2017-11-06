@@ -41,12 +41,26 @@ class Article extends Model
      */
     public function __get($name)
     {
-        if ($name == 'author' && !empty($this->author_id)) {
-            return $this->author = Author::findById($this->author_id);
+        if ($name == 'author') {
+            return Author::findById($this->author_id);
         }
+        return null;
     }
 
-    /**
+	/**
+	 * @param $name
+	 * @return bool
+	 * @access public
+	 */
+    public function __isset($name)
+	{
+		if ($name == 'author') {
+			return !empty($this->author_id);
+		}
+		return false;
+	}
+
+	/**
      * @param int $number
      * @return array
      * @static

@@ -8,7 +8,7 @@
 	<title>Редактирование новости</title>
 </head>
 <body>
-<b><a href="index.php">Редактор</a></b><br>
+<b><a href="/admin/index.php">Редактор</a></b><br>
 <?php
 if(!empty($errors)) {
     foreach ($errors as $error){
@@ -16,18 +16,18 @@ if(!empty($errors)) {
     }
 }
 ?>
-<h2>Редактирование новости номер:<?php echo $article->id?></h2>
+<h2>Редактирование новости номер:<?php echo $article->id;?></h2>
 <form method="post">
     <label>Название:
-    <input type="text" name="title" style="width: 600px" value="<?php echo $article->title?>">
+    <input type="text" name="title" style="width: 600px" value="<?php echo $article->title;?>">
     </label>
     <br>
     <label>Автор:
-    <input type="text" name="author" style="width: 600px" value="<?php echo $article->author->name?>">
+    <input type="text" name="author" style="width: 600px" value="<?php echo $article->author->name;?>">
     </label>
     <br>
     <label>Содержание:<br>
-    <textarea name="lead" style="width: 600px;height: 200px"><?php echo htmlspecialchars($article->lead);?></textarea></label><br>
+    <textarea name="lead" style="width: 600px;height: 200px"><?php echo $article->lead;?></textarea></label><br>
     <input type="submit" name="save" value="Сохранить">
 </form>
 </body>
