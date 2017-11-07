@@ -5,7 +5,7 @@ if(filter_has_var(INPUT_GET, 'id')) {
     die('Не передан параметр id');
 }
 
-require __DIR__ . '/../autoload.php';
+require __DIR__ . '/autoload.php';
 
 use App\View;
 use App\Models\{
@@ -38,4 +38,4 @@ if (isset($_POST, $_POST['save'])) {
 $view = new View;
 $view->article = $article;
 $view->errors = $errors;
-$view->display(__DIR__ . '/../App/Views/admin/edit.php');
+$view->display(__DIR__ . '/App/Views/edit.php');

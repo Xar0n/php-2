@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/../autoload.php';
+require __DIR__ . '/autoload.php';
 
 use App\View;
 use App\Models\{
@@ -34,4 +34,4 @@ if (isset($_POST, $_POST['add'])) {
 
 $view = new View;
 $view->errors = $errors;
-$view->display(__DIR__ . '/../App/Views/admin/add.php');
+$view->display(__DIR__ . '/App/Views/add.php');

@@ -8,7 +8,7 @@
 	<title>Редактирование новости</title>
 </head>
 <body>
-<b><a href="/admin/index.php">Редактор</a></b><br>
+<b><a href="/index.php">Редактор</a></b><br>
 <?php
 if(!empty($errors)) {
     foreach ($errors as $error){
