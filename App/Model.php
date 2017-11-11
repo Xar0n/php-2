@@ -44,7 +44,7 @@ abstract class Model
      * @return bool
      * @access protected
      */
-    protected function update()
+    protected function update():bool
     {
         $fields = get_object_vars($this);
         $sets = [];
@@ -68,7 +68,7 @@ abstract class Model
      * @return bool
      * @access protected
      */
-    protected function insert()
+    protected function insert():bool
     {
         $fields = get_object_vars($this);
         $sets_fields = [];
@@ -96,13 +96,13 @@ abstract class Model
     /**
      * @access public
      */
-    public function save()
+    public function save():bool
     {
         $fields = get_object_vars($this);
         if (empty($fields['id'])) {
-            $this->insert();
+			return $this->insert();
         } else {
-            $this->update();
+           	return $this->update();
         }
     }
 
@@ -110,7 +110,7 @@ abstract class Model
      * @access public
      * @return bool
      */
-    public function delete()
+    public function delete():bool
     {
         $fields = get_object_vars($this);
         if(empty($fields['id'])) {

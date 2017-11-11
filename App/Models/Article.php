@@ -41,7 +41,7 @@ class Article extends Model
      */
     public function __get($name)
     {
-        if ($name == 'author') {
+        if ('author' == $name) {
             return Author::findById($this->author_id);
         }
         return null;
@@ -54,7 +54,7 @@ class Article extends Model
 	 */
     public function __isset($name)
 	{
-		if ($name == 'author') {
+		if ('author' == $name) {
 			return !empty($this->author_id);
 		}
 		return false;
@@ -72,4 +72,34 @@ class Article extends Model
         $sql = 'SELECT * FROM ' . self::$table . ' ORDER BY `id` DESC LIMIT ' . $number;
         return $db->query($sql, [], self::class);
     }
+
+    public function add(
+    	string $title,
+		string $author_name,
+		string $lead
+	):bool {
+		$author = new Author();
+		$author->name = $author_name;
+		$author->save();
+
+		$this->title = $title;
+		$this->lead = $lead;
+		$this->author_id = $author->id;
+		return $this->save();
+	}
+
+	public function edit(
+		int $author_id,
+		string $title,
+		string $author_name,
+		string $lead
+	):bool {
+		$author = Author::findById($author_id);
+		$author->name = $author_name;
+		$author->save();
+
+		$this->title = $title;
+		$this->lead = $lead;
+		return $this->save();
+	}
 }

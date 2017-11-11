@@ -8,16 +8,9 @@
     <title>Добавление новости</title>
 </head>
 <body>
-<b><a href="/index.php">Редактор</a></b><br>
-<?php
-if(!empty($errors)) {
-	foreach ($errors as $error){
-		echo "<b>{$error}</b><br>";
-	}
-}
-?>
+<b><a href="/admin/index">Редактор</a></b><br>
 <h2>Новая статья</h2>
-<form method="post"  action="/add.php">
+<form method="post"  action="/admin/add">
     <label>Название:
     <input type="text" name="title" style="width: 600px">
     </label>

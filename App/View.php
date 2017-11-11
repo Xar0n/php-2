@@ -3,6 +3,8 @@
 namespace App;
 
 
+use App\Traits\{Magic,Iterator};
+
 class View implements
     \Countable,
     \Iterator

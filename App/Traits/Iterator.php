@@ -1,10 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Traits;
 
 
 trait Iterator
 {
+
+	protected $data = [];
+
     public function current()
     {
         return current($this->data);
@@ -22,7 +25,7 @@ trait Iterator
 
     public function valid()
     {
-        return key($this->data) !== null;
+        return null !== key($this->data);
     }
 
     public function rewind()

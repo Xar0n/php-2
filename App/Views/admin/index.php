@@ -8,7 +8,7 @@
 	<title>Новостная админ панель</title>
 </head>
 <body>
-<b><a href="/add.php">Добавить новость</a></b>
+<b><a href="/admin/add">Добавить новость</a></b>
 
 <table border="1">
 	<tr>
@@ -17,22 +17,21 @@
         <th>Автор</th>
 		<th colspan="2">Действия</th>
 	</tr>
-    <?php if(!empty($articles)):?>
+    <?php if(!empty($articles)): ?>
         <?php foreach ($articles as $article): ?>
             <tr>
                 <td><?php echo $article->id;?></a></td>
                 <td><?php echo htmlspecialchars($article->title);?></td>
+                <?php if(!empty($article->author)): ?>
                 <td><?php echo htmlspecialchars($article->author->name);?></td>
-                <td><a href="/edit.php?id=<?php echo $article->id;?>">Редактировать</a></td>
-                <form method="post">
-                    <td>
-                        <input type="hidden" name="id_article" value="<?php echo $article->id;?>">
-                        <input type="submit" name="delete" value="Удалить">
-                    </td>
-                </form>
+                    <?php else: ?>
+                    <td>Автора нет</td>
+                <?php endif; ?>
+                <td><a href="/admin/edit/?id=<?php echo $article->id; ?>">Редактировать</a></td>
+                <td><a href="/admin/delete/?id=<?php echo $article->id; ?>">Удалить</a></td>
             </tr>
-        <?php endforeach;?>
-    <?php endif;?>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </table>
 </body>
 </html>
