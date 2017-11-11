@@ -8,7 +8,7 @@
 	<title>Редактирование новости</title>
 </head>
 <body>
-<b><a href="/admin">Редактор</a></b><br>
+<b><a href="/admin/">Редактор</a></b><br>
 <h2>Редактирование новости номер:<?php echo $article->id; ?></h2>
 <form method="post">
     <label>Название:

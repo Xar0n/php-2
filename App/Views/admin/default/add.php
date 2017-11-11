@@ -8,9 +8,9 @@
     <title>Добавление новости</title>
 </head>
 <body>
-<b><a href="/admin/index">Редактор</a></b><br>
+<b><a href="/admin/">Редактор</a></b><br>
 <h2>Новая статья</h2>
-<form method="post"  action="/admin/add">
+<form method="post"  action="/admin/default/add">
     <label>Название:
     <input type="text" name="title" style="width: 600px">
     </label>

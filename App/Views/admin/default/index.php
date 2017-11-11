@@ -8,7 +8,7 @@
 	<title>Новостная админ панель</title>
 </head>
 <body>
-<b><a href="/admin/add">Добавить новость</a></b>
+<b><a href="/admin/default/add">Добавить новость</a></b>
 
 <table border="1">
 	<tr>
@@ -27,8 +27,8 @@
                     <?php else: ?>
                     <td>Автора нет</td>
                 <?php endif; ?>
-                <td><a href="/admin/edit/?id=<?php echo $article->id; ?>">Редактировать</a></td>
-                <td><a href="/admin/delete/?id=<?php echo $article->id; ?>">Удалить</a></td>
+                <td><a href="/admin/default/edit/?id=<?php echo $article->id; ?>">Редактировать</a></td>
+                <td><a href="/admin/default/delete/?id=<?php echo $article->id; ?>">Удалить</a></td>
             </tr>
         <?php endforeach; ?>
     <?php endif; ?>

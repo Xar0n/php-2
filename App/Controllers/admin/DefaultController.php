@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Администратор
- * Date: 09.11.2017
- * Time: 15:43
- */
 
-namespace App\Controllers;
+namespace App\Controllers\admin;
 
 
 use App\Controller;
@@ -16,20 +10,19 @@ use App\Models\{
 };
 
 
-class AdminController extends Controller
+class DefaultController extends Controller
 {
 
 	protected function actionIndex()
 	{
 		$articles = Article::findAll();
 		$this->view->articles = $articles;
-		$this->view->display(__DIR__ . '/../Views/admin/index.php');
+		$this->view->display(__DIR__ . '/../../Views/admin/default/index.php');
 	}
 
 	protected function actionEdit()
 	{
 		$id = $this->validateInputGet('id', FILTER_VALIDATE_INT);
-
 		$article = Article::findById($id);
 		if (empty($article)) {
 			http_response_code(404);
@@ -45,7 +38,7 @@ class AdminController extends Controller
 		}
 
 		$this->view->article = $article;
-		$this->view->display(__DIR__ . '/../Views/admin/edit.php');
+		$this->view->display(__DIR__ . '/../../Views/admin/default/edit.php');
 	}
 
 	protected function actionDelete()
@@ -59,7 +52,7 @@ class AdminController extends Controller
 				$author->delete();
 			}
 		}
-		header('Location:/admin');
+		header('Location:/admin/');
 		exit();
 	}
 
@@ -73,6 +66,6 @@ class AdminController extends Controller
 			$article->add($title, $author_name, $lead);
 		}
 
-		$this->view->display(__DIR__ . '/../Views/admin/add.php');
+		$this->view->display(__DIR__ . '/../../Views/admin/default/add.php');
 	}
 }
