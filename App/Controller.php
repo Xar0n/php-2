@@ -3,9 +3,13 @@
 namespace App;
 
 
+use App\Exceptions\Http\{
+	Http400Exception,
+	Http403Exception
+};
+
 abstract class Controller
 {
-
 	protected $view;
 
 	public function __construct()
@@ -19,15 +23,19 @@ abstract class Controller
 		if ($this->access()) {
 			$this->$method();
 		} else {
-			http_response_code(403);
-			exit();
+			throw new Http403Exception;
 		}
 
 	}
 
 	public function access()
 	{
-		return true;
+		return false;
+	}
+
+	public function actionErrorDb(string $template = __DIR__ .  '/Views/error_db.php')
+	{
+		$this->view->display($template);
 	}
 
 	public function validateInputGet(string $param, int $filter)
@@ -35,13 +43,11 @@ abstract class Controller
 		if (filter_has_var(INPUT_GET, $param)) {
 			$value = filter_input(INPUT_GET, $param, $filter);
 			if (empty($value)) {
-				http_response_code(415);
-				exit();
+				throw new \InvalidArgumentException;
 			}
 			return $value;
 		} else {
-			http_response_code(400);
-			exit();
+			throw new Http400Exception;
 		}
 	}
 }

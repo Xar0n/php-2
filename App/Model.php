@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Exceptions\Model\ItemNotFoundException;
 
 /**
  * Class Model
@@ -37,7 +38,10 @@ abstract class Model
         $db = new DB();
         $sql = 'SELECT * FROM ' . static::$table. ' WHERE id = :id';
         $result = $db->query($sql, [':id' => $id], static::class);
-        return $result ? $result[0] : false;
+        if (empty($result)) {
+        	throw new ItemNotFoundException;
+		}
+        return $result[0];
     }
 
     /**
@@ -120,4 +124,9 @@ abstract class Model
         $sql = 'DELETE FROM ' . static::$table . ' WHERE id = :id';
         return $db->execute($sql, [':id' => $fields['id']]);
     }
+
+    public function fill(array $data)
+	{
+
+	}
 }

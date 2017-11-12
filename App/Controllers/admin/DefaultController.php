@@ -8,6 +8,11 @@ use App\Models\{
 	Article,
 	Author
 };
+use App\Exceptions\Http\{
+	Http404Exception,
+	Http415Exception
+};
+use App\Exceptions\Model\ItemNotFoundException;
 
 
 class DefaultController extends Controller
@@ -22,13 +27,14 @@ class DefaultController extends Controller
 
 	protected function actionEdit()
 	{
-		$id = $this->validateInputGet('id', FILTER_VALIDATE_INT);
-		$article = Article::findById($id);
-		if (empty($article)) {
-			http_response_code(404);
-			exit();
+		try {
+			$id = $this->validateInputGet('id', FILTER_VALIDATE_INT);
+			$article = Article::findById($id);
+		} catch (ItemNotFoundException $e) {
+			throw new Http404Exception;
+		} catch (\InvalidArgumentException $e) {
+			throw new Http415Exception;
 		}
-
 		if (isset($_POST, $_POST['save'], $_POST['title'],
 			$_POST['lead'], $_POST['author'])) {
 			$author_name = filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING);
