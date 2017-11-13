@@ -2,6 +2,7 @@
 require __DIR__ . '/autoload.php';
 
 use App\Exceptions\Db\DbException;
+use App\Exceptions\Errors;
 use App\Exceptions\Http\{
 	HttpCode,
 	Http403Exception
@@ -16,12 +17,12 @@ try {
 	$class = '\\App\\Controllers\\' . $ctrl;
 	$controller = new $class;
 	$controller->action($action);
+} catch (Errors $e) {
+	foreach ($e->getAll() as $error) {
+		echo $error->getMessage().PHP_EOL;
+	}
 } catch (DbException $e) {
 	$controller->action('ErrorDb');
-} catch (Http403Exception $e) {
-	http_response_code($e->getCode());
-	echo $e->getMessage();
-	exit;
 } catch (HttpCode $e) {
 	http_response_code($e->getCode());
 	echo $e->getMessage();

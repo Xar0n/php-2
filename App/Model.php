@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Exceptions\Errors;
 use App\Exceptions\Model\ItemNotFoundException;
 
 /**
@@ -127,6 +128,21 @@ abstract class Model
 
     public function fill(array $data)
 	{
-
+		$reflection = new \ReflectionClass($this);
+		$properties = $reflection->getProperties(\ReflectionProperty::IS_PUBLIC);
+		$errors = new Errors;
+		foreach ($properties as $property)
+		{
+			if (array_key_exists($property->name, $data)) {
+				$this->{$property->name} = $data[$property->name];
+			} else {
+				$errors->add(new \OutOfBoundsException(
+					'Ключ '. $property->name . ' отсутствует в переданном массиве.'
+				));
+			}
+		}
+		if (!$errors->empty()) {
+			throw $errors;
+		}
 	}
 }

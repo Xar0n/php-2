@@ -49,7 +49,7 @@ class DB
     public function execute(
         string $sql,
         array $params = []
-    ) {
+    ):bool {
     	try {
 			$sth = $this->dbh->prepare($sql);
 			return $sth->execute($params);

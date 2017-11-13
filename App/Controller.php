@@ -30,7 +30,7 @@ abstract class Controller
 
 	public function access()
 	{
-		return false;
+		return true;
 	}
 
 	public function actionErrorDb(string $template = __DIR__ .  '/Views/error_db.php')

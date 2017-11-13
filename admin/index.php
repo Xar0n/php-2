@@ -18,10 +18,6 @@ try {
 	$controller->action($action);
 } catch (DbException $e) {
 	$controller->action('errorDb');
-} catch (Http403Exception $e) {
-	http_response_code($e->getCode());
-	echo $e->getMessage();
-	exit;
 } catch (HttpCode $e) {
 	http_response_code($e->getCode());
 	echo $e->getMessage();
