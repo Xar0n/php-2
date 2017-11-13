@@ -17,10 +17,6 @@ try {
 	$class = '\\App\\Controllers\\' . $ctrl;
 	$controller = new $class;
 	$controller->action($action);
-} catch (Errors $e) {
-	foreach ($e->getAll() as $error) {
-		echo $error->getMessage().PHP_EOL;
-	}
 } catch (DbException $e) {
 	$controller->action('ErrorDb');
 } catch (HttpCode $e) {
