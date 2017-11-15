@@ -15,14 +15,6 @@
         <input type="text" name="title" style="width: 600px" value="<?php echo $article->title; ?>">
     </label>
     <br>
-    <label>Автор:
-        <?php if(!empty($article->author)): ?>
-        <input type="text" name="author" style="width: 600px" value="<?php echo $article->author->name; ?>">
-		<?php else: ?>
-            <input type="text" name="author" style="width: 600px" value="">
-		<?php endif; ?>
-    </label>
-    <br>
     <label>Содержание:<br>
         <textarea name="lead" style="width: 600px;height: 200px"><?php echo $article->lead; ?></textarea></label><br>
     <input type="submit" name="save" value="Сохранить">

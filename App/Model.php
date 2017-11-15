@@ -3,6 +3,7 @@
 namespace App;
 use App\Exceptions\Errors;
 use App\Exceptions\Model\ItemNotFoundException;
+use App\Exceptions\Http\Http400Exception;
 
 /**
  * Class Model
@@ -141,8 +142,22 @@ abstract class Model
 				));
 			}
 		}
+		debug($errors);
 		if (!$errors->empty()) {
 			throw $errors;
+		}
+	}
+
+	public static function validateInputGet(string $param, int $filter)
+	{
+		if (filter_has_var(INPUT_GET, $param)) {
+			$value = filter_input(INPUT_GET, $param, $filter);
+			if (empty($value)) {
+				throw new \InvalidArgumentException;
+			}
+			return $value;
+		} else {
+			throw new Http400Exception;
 		}
 	}
 }

@@ -24,7 +24,7 @@ class ArticleController extends Controller
 	protected function actionOne()
 	{
 		try {
-			$id = $this->validateInputGet('id', FILTER_VALIDATE_INT);
+			$id = Article::validateInputGet('id', FILTER_VALIDATE_INT);
 			$article = Article::findById($id);
 			$this->view->article = $article;
 			$this->view->display(__DIR__ . '/../Views/article/one.php');

@@ -10,20 +10,27 @@
 <body>
 <b><a href="/admin/">Редактор</a></b><br>
 <h2>Новая статья</h2>
-<form method="post"  action="/admin/default/add">
+<form method="post">
     <label>Название:
     <input type="text" name="title" style="width: 600px">
     </label>
     <br>
     <label>Автор:
-    <input type="text" name="author" style="width: 600px">
+        <select name="author">
+            <option selected disabled>Выберете автора</option>
+            <?php if(!empty($authors)):?>
+                <?php foreach ($authors as $author):?>
+                <option value="<?php echo $author->id;?>"><?php echo $author->name;?></option>
+                <?php endforeach;?>
+            <?php endif?>
+        </select>
     </label>
     <br>
     <label>Содержание:<br>
     <textarea name="lead" style="width: 600px;height: 400px"></textarea>
     </label>
     <br>
-    <input type="submit" name="add" value="Добавить">
+    <input type="submit" name="save" value="Добавить">
 </form>
 </body>
 </html>

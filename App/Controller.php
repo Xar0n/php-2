@@ -3,10 +3,11 @@
 namespace App;
 
 
+use App\Exceptions\Controller\ActionNotFound;
 use App\Exceptions\Http\{
-	Http400Exception,
-	Http403Exception
+	Http403Exception, Http404Exception
 };
+use App\Exceptions\Model\ItemNotFoundException;
 
 abstract class Controller
 {
@@ -36,18 +37,5 @@ abstract class Controller
 	public function actionErrorDb(string $template = __DIR__ .  '/Views/error_db.php')
 	{
 		$this->view->display($template);
-	}
-
-	public function validateInputGet(string $param, int $filter)
-	{
-		if (filter_has_var(INPUT_GET, $param)) {
-			$value = filter_input(INPUT_GET, $param, $filter);
-			if (empty($value)) {
-				throw new \InvalidArgumentException;
-			}
-			return $value;
-		} else {
-			throw new Http400Exception;
-		}
 	}
 }
