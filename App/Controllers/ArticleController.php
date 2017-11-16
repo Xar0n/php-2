@@ -2,36 +2,40 @@
 
 namespace App\Controllers;
 
-
 use App\Controller;
 use App\Models\Article;
-use App\Exceptions\Http\{
-	Http404Exception,
-	Http415Exception
-};
+use App\Exceptions\Http\Http404Exception;
+use App\Exceptions\Http\Http415Exception;
 use App\Exceptions\Model\ItemNotFoundException;
+use App\Twig;
 
 class ArticleController extends Controller
 {
+    public function __construct()
+    {
+        $this->view = new Twig;
+    }
 
-	protected function actionIndex()
-	{
-		$articles = Article::selectLimitDesc(3);
-		$this->view->articles = $articles;
-		$this->view->display(__DIR__ . '/../Views/article/index.php');
-	}
+    protected function actionIndex()
+    {
+        $articles = Article::selectLimitDesc(3);
+        $this->view->articles = $articles;
+        $this->view->display('article/index.twig', ['articles' => $articles]);
+    }
 
-	protected function actionOne()
-	{
-		try {
-			$id = Article::validateInputGet('id', FILTER_VALIDATE_INT);
-			$article = Article::findById($id);
-			$this->view->article = $article;
-			$this->view->display(__DIR__ . '/../Views/article/one.php');
-		} catch (ItemNotFoundException $e) {
-			throw new Http404Exception;
-		} catch (\InvalidArgumentException $e) {
-			throw new Http415Exception;
-		}
-	}
+    protected function actionOne()
+    {
+        try {
+            $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+            if (empty($id)) {
+                throw new \InvalidArgumentException;
+            }
+            $article = Article::findById($id);
+            $this->view->display('article/one.twig', ['article' => $article]);
+        } catch (ItemNotFoundException $e) {
+            throw new Http404Exception;
+        } catch (\InvalidArgumentException $e) {
+            throw new Http415Exception;
+        }
+    }
 }

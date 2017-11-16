@@ -17,14 +17,14 @@
         <th>Автор</th>
 		<th colspan="2">Действия</th>
 	</tr>
-    <?php if(!empty($articles)): ?>
-        <?php foreach ($articles as $article): ?>
+    <?php if (!empty($articles)) : ?>
+        <?php foreach ($articles as $article) : ?>
             <tr>
                 <td><?php echo $article->id;?></a></td>
                 <td><?php echo htmlspecialchars($article->title);?></td>
-                <?php if(!empty($article->author)): ?>
+                <?php if (!empty($article->author)) : ?>
                 <td><?php echo htmlspecialchars($article->author->name);?></td>
-                    <?php else: ?>
+                <?php else : ?>
                     <td>Автора нет</td>
                 <?php endif; ?>
                 <td><a href="/admin/default/edit/?id=<?php echo $article->id; ?>">Редактировать</a></td>

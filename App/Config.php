@@ -15,12 +15,11 @@ class Config
 
     private function __clone()
     {
-
     }
 
     public static function getInstance()
     {
-        if(static::$instance === null) {
+        if (static::$instance === null) {
             static::$instance = new static();
         }
         return static::$instance;

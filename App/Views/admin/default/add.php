@@ -18,8 +18,8 @@
     <label>Автор:
         <select name="author">
             <option selected disabled>Выберете автора</option>
-            <?php if(!empty($authors)):?>
-                <?php foreach ($authors as $author):?>
+            <?php if (!empty($authors)) :?>
+                <?php foreach ($authors as $author) :?>
                 <option value="<?php echo $author->id;?>"><?php echo $author->name;?></option>
                 <?php endforeach;?>
             <?php endif?>

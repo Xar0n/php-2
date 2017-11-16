@@ -2,11 +2,10 @@
 
 namespace App\Traits;
 
-
 trait Iterator
 {
 
-	protected $data = [];
+    protected $data = [];
 
     public function current()
     {

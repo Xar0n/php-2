@@ -1,7 +1,8 @@
 <?php
 namespace App\Models;
 
-use App\{DB,Model};
+use App\DB;
+use App\Model;
 
 /**
  * Class Article
@@ -47,20 +48,20 @@ class Article extends Model
         return null;
     }
 
-	/**
-	 * @param $name
-	 * @return bool
-	 * @access public
-	 */
+    /**
+     * @param $name
+     * @return bool
+     * @access public
+     */
     public function __isset($name)
-	{
-		if ('author' == $name) {
-			return !empty($this->author_id);
-		}
-		return false;
-	}
+    {
+        if ('author' == $name) {
+            return !empty($this->author_id);
+        }
+        return false;
+    }
 
-	/**
+    /**
      * @param int $number
      * @return array
      * @static

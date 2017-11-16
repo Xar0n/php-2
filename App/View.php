@@ -2,15 +2,15 @@
 
 namespace App;
 
-
-use App\Traits\{Magic,Iterator};
+use App\Traits\Magic;
+use App\Traits\Iterator;
 
 class View implements
     \Countable,
     \Iterator
 {
     use Magic,
-    Iterator;
+        Iterator;
 
     protected $data = [];
 

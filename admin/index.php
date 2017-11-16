@@ -6,6 +6,7 @@ use App\Exceptions\Http\{
 	HttpCode,
 	Http403Exception
 };
+use App\View;
 
 $urlParts = explode('/', $_SERVER['REQUEST_URI']);
 $ctrl = !empty($urlParts[2]) ? ucfirst($urlParts[2]) . 'Controller' :
@@ -17,7 +18,8 @@ try {
 	$controller = new $class;
 	$controller->action($action);
 } catch (DbException $e) {
-	$controller->action('errorDb');
+	$view = new View;
+	$view->display(__DIR__ . '/../App/Views/error_db.php');
 } catch (HttpCode $e) {
 	http_response_code($e->getCode());
 	echo $e->getMessage();

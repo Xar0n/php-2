@@ -18,10 +18,9 @@ try {
 	$controller = new $class;
 	$controller->action($action);
 } catch (DbException $e) {
-	$controller->action('ErrorDb');
+	$view = new App\View;
+	$view->display(__DIR__ . '/App/Views/error_db.php');
 } catch (HttpCode $e) {
 	http_response_code($e->getCode());
-	echo $e->getMessage();
-} catch (Throwable $e) {
 	echo $e->getMessage();
 }

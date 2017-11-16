@@ -2,11 +2,10 @@
 
 namespace App\Traits;
 
-
 trait Magic
 {
 
-	protected $data = [];
+    protected $data = [];
 
     public function __set($key, $value)
     {

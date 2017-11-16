@@ -2,10 +2,8 @@
 
 namespace App;
 
-use App\Exceptions\Db\{
-	DbException,
-	DbPrepareException
-};
+use App\Exceptions\Db\DbException;
+use App\Exceptions\Db\DbPrepareException;
 
 class DB
 {
@@ -14,17 +12,17 @@ class DB
     public function __construct()
     {
         try {
-			$config = Config::getInstance();
-			$this->dbh = new \PDO(
-				'mysql:host=' . $config->data['db']['host'] .
-				';dbname=' . $config->data['db']['database'],
-				$config->data['db']['user'],
-				$config->data['db']['password']
-			);
-			$this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-		} catch (\PDOException $e) {
-        	throw new DbException;
-		}
+            $config = Config::getInstance();
+            $this->dbh = new \PDO(
+                'mysql:host=' . $config->data['db']['host'] .
+                ';dbname=' . $config->data['db']['database'],
+                $config->data['db']['user'],
+                $config->data['db']['password']
+            );
+            $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        } catch (\PDOException $e) {
+            throw new DbException;
+        }
     }
 
     public function getDbh()
@@ -37,24 +35,24 @@ class DB
         array $params = [],
         $class = \stdClass::class
     ) {
-    	try {
-			$sth = $this->dbh->prepare($sql);
-			$sth->execute($params);
-			return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
-		} catch (\PDOException $e) {
-    		throw new DbPrepareException;
-		}
+        try {
+            $sth = $this->dbh->prepare($sql);
+            $sth->execute($params);
+            return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
+        } catch (\PDOException $e) {
+            throw new DbPrepareException;
+        }
     }
 
     public function execute(
         string $sql,
         array $params = []
-    ):bool {
-    	try {
-			$sth = $this->dbh->prepare($sql);
-			return $sth->execute($params);
-		} catch (\PDOException $e) {
-    		throw new DbPrepareException;
-		}
+    ): bool {
+        try {
+            $sth = $this->dbh->prepare($sql);
+            return $sth->execute($params);
+        } catch (\PDOException $e) {
+            throw new DbPrepareException;
+        }
     }
 }
