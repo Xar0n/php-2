@@ -62,12 +62,19 @@ class DefaultController extends Controller
 
 	protected function actionDelete()
 	{
-		$id = Article::validateInputGet('id', FILTER_VALIDATE_INT);
-		$article = Article::findById($id);
-		if (!empty($article)) {
+		try {
+			$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+			if (empty($id)) {
+				throw new \InvalidArgumentException;
+			}
+			$article = Article::findById($id);
 			$article->delete();
+			header('Location:/admin/');
+			exit();
+		} catch (ItemNotFoundException $e) {
+			throw new Http404Exception;
+		} catch (\InvalidArgumentException $e) {
+			throw new Http415Exception;
 		}
-		header('Location:/admin/');
-		exit();
 	}
 }
