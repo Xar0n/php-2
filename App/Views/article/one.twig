@@ -9,10 +9,10 @@
     <a href="/">Главная</a><br>
     <b>Номер новости:</b>{{ article.id }}<br>
     <b>Название:</b>{{ article.title }}<br>
-    {% if article.author.name %}
-        <b>Автор:</b>{{ article.author.name }}<br>
-    {% else %}
+    {% if article.author.name is empty %}
         <td>Автора нет</td><br>
+    {% else %}
+        <b>Автор:</b>{{ article.author.name }}<br>
     {% endif %}
     <b>Содержание:</b><p>{{ article.lead }}</p><br>
     <br><br><br><br><br>
