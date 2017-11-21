@@ -44,7 +44,7 @@ class DefaultController extends Controller
 	{
 		try {
 			$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-			if (empty($value)) {
+			if (empty($id)) {
 				throw new \InvalidArgumentException;
 			}
 			$article = Article::findById($id);
@@ -58,6 +58,20 @@ class DefaultController extends Controller
 		}
 		$this->view->article = $article;
 		$this->view->display(__DIR__ . '/../../Views/admin/default/edit.php');
+	}
+
+	protected function actionSave()
+	{
+		if(filter_has_var('id', INPUT_POST)) {
+			$article = Article::findById($_POST['id']);
+		} else {
+			$article = new Article;
+			$author = Author::findById($_POST['author']);
+			$article->author_id = $author->id;
+		}
+		$article->title = $_POST['title'];
+		$article->lead = $_POST['lead'];
+		$article->save();
 	}
 
 	protected function actionDelete()

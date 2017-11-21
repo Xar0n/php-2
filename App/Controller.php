@@ -30,9 +30,4 @@ abstract class Controller
 	{
 		return true;
 	}
-
-	public function actionErrorDb(string $template = __DIR__ . '/Views/error_db.php')
-	{
-		$this->view->display($template);
-	}
 }
