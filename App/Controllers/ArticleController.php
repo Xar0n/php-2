@@ -18,7 +18,7 @@ class ArticleController extends Controller
 
 	protected function actionIndex()
 	{
-		$articles = Article::selectLimitDesc(3);
+		$articles = Article::findAllEach();
 		$this->view->articles = $articles;
 		$this->view->display('article/index.twig', ['articles' => $articles]);
 	}

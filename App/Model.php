@@ -32,6 +32,13 @@ abstract class Model
 		return $db->query($sql, [], static::class);
 	}
 
+	public static function findAllEach()
+	{
+		$db = new DB();
+		$sql = 'SELECT * FROM ' . static::$table;
+		return $db->queryEach($sql, [], static::class);
+	}
+
 	/**
 	 * @param int $id
 	 * @return object|bool

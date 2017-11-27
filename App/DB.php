@@ -45,6 +45,24 @@ class DB
 		}
 	}
 
+	public function queryEach(
+		string $sql,
+		array $params = [],
+		$class = \stdClass::class
+	)
+	{
+		try {
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute($params);
+			$sth->setFetchMode(\PDO::FETCH_CLASS, $class);
+			while ($result = $sth->fetch()) {
+				yield $result;
+			}
+		} catch (\PDOException $e) {
+			throw new DbPrepareException;
+		}
+	}
+
 	public function execute(
 		string $sql,
 		array $params = []
