@@ -9,7 +9,7 @@
         <tr>
             <?php foreach ($columns as $column): ?>
                 <td><?php echo htmlspecialchars($column($row)); ?></a></td>
-			<?php endforeach ?>
+            <?php endforeach ?>
             <td><a href="/admin/default/edit/?id=<?php echo $row->id; ?>">Редактировать</a></td>
             <td><a href="/admin/default/delete/?id=<?php echo $row->id; ?>">Удалить</a></td>
         </tr>
