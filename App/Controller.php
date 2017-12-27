@@ -6,6 +6,7 @@ use App\Exceptions\Controller\ActionNotFound;
 use App\Exceptions\Http\Http403Exception;
 use App\Exceptions\Http\Http404Exception;
 use App\Exceptions\Model\ItemNotFoundException;
+use App\Views\View;
 
 abstract class Controller
 {

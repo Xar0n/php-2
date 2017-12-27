@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Views;
 
 use App\Traits\Magic;
 use App\Traits\Iterator;

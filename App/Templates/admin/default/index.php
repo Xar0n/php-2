@@ -15,24 +15,11 @@ use App\Models\Article;
 <b><a href="/admin/default/add">Добавить новость</a></b>
 <?php
 if (!empty($articles)) {
-	$table = new App\AdminDataTable(
+	$table = new App\Views\AdminDataTable(
 		$articles,
-		[
-			function (Article $article) {
-				return $article->id;
-			},
-			function (Article $article) {
-				return $article->title;
-			},
-			function (Article $article) {
-				if (empty($article->author)) {
-					return 'Автора нет';
-				}
-				return $article->author->name;
-			}
-		]
+		include __DIR__ . '/../../../Views/functions.php'
 	);
-	$table->render();
+	$table->render(__DIR__ . '/table.php');
 }
 ?>
 </body>

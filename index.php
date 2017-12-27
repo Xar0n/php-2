@@ -19,7 +19,7 @@ try {
 	$controller->action($action);
 } catch (DbException $e) {
 	$view = new App\View;
-	$view->display(__DIR__ . '/App/Views/error_db.php');
+	$view->display(__DIR__ . '/App/Templates/error_db.php');
 } catch (HttpCode $e) {
 	http_response_code($e->getCode());
 	echo $e->getMessage();

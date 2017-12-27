@@ -7,7 +7,7 @@ use App\Models\Article;
 use App\Exceptions\Http\Http404Exception;
 use App\Exceptions\Http\Http415Exception;
 use App\Exceptions\Model\ItemNotFoundException;
-use App\Twig;
+use App\Views\Twig;
 
 class ArticleController extends Controller
 {

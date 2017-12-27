@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Views;
 
 class AdminDataTable
 {
@@ -13,11 +13,11 @@ class AdminDataTable
 		$this->columns = $columns;
 	}
 
-	public function render()
+	public function render(string $template)
 	{
 		$view = new View();
 		$view->rows = $this->rows;
 		$view->columns = $this->columns;
-		$view->display(__DIR__ . '/Views/admin/default/table.php');
+		$view->display($template);
 	}
 }

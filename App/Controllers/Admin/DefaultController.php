@@ -15,7 +15,7 @@ class DefaultController extends Controller
 	{
 		$articles = Article::findAll();
 		$this->view->articles = $articles;
-		$this->view->display(__DIR__ . '/../../Views/admin/default/index.php');
+		$this->view->display(__DIR__ . '/../../Templates/admin/default/index.php');
 	}
 
 	protected function actionAdd()
@@ -37,7 +37,7 @@ class DefaultController extends Controller
 			$article->save();
 		}
 		$this->view->authors = $authors;
-		$this->view->display(__DIR__ . '/../../Views/admin/default/add.php');
+		$this->view->display(__DIR__ . '/../../Templates/admin/default/add.php');
 	}
 
 	protected function actionEdit()
@@ -57,7 +57,7 @@ class DefaultController extends Controller
 			$article->save();
 		}
 		$this->view->article = $article;
-		$this->view->display(__DIR__ . '/../../Views/admin/default/edit.php');
+		$this->view->display(__DIR__ . '/../../Templates/admin/default/edit.php');
 	}
 
 	protected function actionSave()
